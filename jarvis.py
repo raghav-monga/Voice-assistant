@@ -8,8 +8,6 @@ import json
 import pyjokes
 import random
 import smtplib
-# import cv2
-# import dlib
 import pywhatkit as kit
 from covid import Covid
 from requests import get
@@ -18,8 +16,7 @@ from pytz import timezone as tz
 from pytz import country_names as c_n
 from datetime import date
 from datetime import timedelta 
-# from scipy.spatial import distance
-# from drowsinessDetector.py import drowsi
+
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -152,69 +149,6 @@ def weather():
 			f"{desc}\n" +f"{cityname}, {fullc_n}\n" + f"{time}\n\n")
 	except KeyError:
 		speak("No information yet about this city")		
-# def sleep():
-# 	def calculate_EAR(eye):
-# 		A = distance.euclidean(eye[1], eye[5])
-# 		B = distance.euclidean(eye[2], eye[4])
-# 		C = distance.euclidean(eye[0], eye[3])
-# 		ear_aspect_ratio = (A+B)/(2.0*C)
-# 		return ear_aspect_ratio
-    
-# 	cap = cv2.VideoCapture(0)
-# 	hog_face_detector = dlib.get_frontal_face_detector()
-# 	dlib_facelandmark = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
-	
-# 	while True:
-# 		_, frame = cap.read()
-# 		gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-# 		faces = hog_face_detector(gray)
-# 		for face in faces:
-# 			face_landmarks = dlib_facelandmark(gray, face)
-# 			leftEye = []
-# 			rightEye = []
-			
-# 			for n in range(36,42):
-# 				x = face_landmarks.part(n).x
-# 				y = face_landmarks.part(n).y
-# 				leftEye.append((x,y))
-# 				next_point = n+1
-# 				if n == 41:
-# 					next_point = 36
-# 				x2 = face_landmarks.part(next_point).x
-# 				y2 = face_landmarks.part(next_point).y
-# 				cv2.line(frame,(x,y),(x2,y2),(0,255,0),1)
-				
-# 			for n in range(42,48):
-# 				x = face_landmarks.part(n).x
-# 				y = face_landmarks.part(n).y
-# 				rightEye.append((x,y))
-# 				next_point = n+1
-# 				if n == 47:
-# 					next_point = 42
-# 				x2 = face_landmarks.part(next_point).x
-# 				y2 = face_landmarks.part(next_point).y
-# 				cv2.line(frame,(x,y),(x2,y2),(0,255,0),1)
-				
-# 			left_ear = calculate_EAR(leftEye)
-# 			right_ear = calculate_EAR(rightEye)
-			
-# 			EAR = (left_ear+right_ear)/2
-# 			EAR = round(EAR,2)
-# 			if EAR<0.26:
-# 				cv2.putText(frame,"DROWSY",(20,100),
-# 				    cv2.FONT_HERSHEY_SIMPLEX,3,(0,0,255),4)
-# 				cv2.putText(frame,"Are you Sleepy?",(20,400),
-# 				    cv2.FONT_HERSHEY_SIMPLEX,2,(0,0,255),4)
-# 				print("Drowsy")
-# 			print(EAR)
-			
-# 		cv2.imshow("Are you Sleepy", frame)
-		
-# 		key = cv2.waitKey(1)
-# 		if key == 27:
-# 			break
-# 	cap.release()
-# 	cv2.destroyAllWindows()		
 
 def whatsapp():
     contacts = {"<name1>" : "+91<number>" , "<name2>" : "+91<number>", "<name3>" : "+91<number>"}
@@ -295,7 +229,7 @@ if __name__ =="__main__":
 
 		elif 'joke' in query:
 			speak(pyjokes.get_joke())
-			print(joke)
+# 			print(joke)
 			
 		elif 'how are you'in query or "what's up" in query:
 			lis=['I am cool, what about you?','Just doing my work','Performing my duty of serving you','I am nice and full of energy']
@@ -312,10 +246,8 @@ if __name__ =="__main__":
 				print(e)
 				speak("Sorry Boss, I am not able to send this email")    
 
-		# elif 'exit' or 'quit' in query:
-		# 	speak("Thank you for using me, have a nice day")
-		# 	exit()	           
+		elif 'exit' or 'quit' in query:
+			speak("Thank you for using me, have a nice day")
+			exit()	           
 
-		elif 'exit' in query:
-			from drowsinessDetector.py import drowsi
-			drowsi()
+		
